@@ -26,4 +26,21 @@ div.page-container {
   width: 80vw;
   height: 90vh;
 }
+
+@media (max-width: 512px) {
+  div.page-container {
+    grid-template-columns: 50% auto auto auto;
+    gap: 5px;
+    width: 100vw;
+    height: 100vh;
+    padding: 5px;
+  }
+}
+@media (max-width: 1024px) and (min-width: 512px) {
+  div.page-container {
+    grid-template-columns: 33% auto auto auto;
+    width: 100vw;
+    height: 100vh;
+  }
+}
 </style>
