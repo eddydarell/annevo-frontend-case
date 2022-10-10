@@ -8,6 +8,7 @@ import { useSideBarStore } from "@/stores/sidebar";
 const items = ref({ data: [{ name: "", children: [] }] });
 const isLoading = ref(true);
 const showError = ref(false);
+const sideBarStore = useSideBarStore();
 
 async function fetchSideBarItems(): Promise<void> {
   const url = "https://run.mocky.io/v3/bca27736-b535-4547-88a8-3b5e04687d0d";
@@ -15,13 +16,13 @@ async function fetchSideBarItems(): Promise<void> {
   try {
     items.value = await (await fetch(url)).json();
     isLoading.value = false;
-    useSideBarStore().resetTries();
+    sideBarStore.resetTries();
   } catch (err) {
-    useSideBarStore().incrementTries();
-    if (useSideBarStore().fetchTries < 5) {
+    sideBarStore.incrementTries();
+    if (sideBarStore.fetchTries < 5) {
       setTimeout(() => {
         console.log(
-          `Retrying fecth after ${useSideBarStore().fetchTries} attempts...`
+          `Retrying fecth after ${sideBarStore.fetchTries} attempts...`
         );
         fetchSideBarItems();
       }, 3000);

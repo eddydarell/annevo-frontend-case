@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import SadFace from "@/components/icons/IconSadFace.vue";
 </script>
+
 <template>
   <div class="error-container">
     <SadFace />
     <h3>Unable to load items...</h3>
   </div>
 </template>
+
 <style scoped>
 div.error-container {
   display: flex;

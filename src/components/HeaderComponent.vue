@@ -2,16 +2,17 @@
 import { useSideBarStore } from "@/stores/sidebar";
 import { useCounterStore } from "@/stores/counter";
 
-const store = useSideBarStore();
+const sideBarStore = useSideBarStore();
+const counterStore = useCounterStore();
 </script>
 
 <template>
   <div class="header-container">
     <div>
-      <h1 @click="useCounterStore().increment()">
-        {{ store.getTitle() ? store.getTitle() : "Header" }}
+      <h1 @click="counterStore.increment()">
+        {{ sideBarStore.getTitle() ? sideBarStore.getTitle() : "Header" }}
       </h1>
-      <p>{{ useCounterStore().count }} header clicks</p>
+      <p>{{ counterStore.count }} header clicks</p>
     </div>
   </div>
 </template>

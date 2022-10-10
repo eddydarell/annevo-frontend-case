@@ -6,7 +6,7 @@ import type SideBarItemType from "@/types/sidebarItemType";
 
 const isOpened = ref(false);
 const itemClass = ref("side-bar-item");
-const store = useSideBarStore();
+const sideBarStore = useSideBarStore();
 
 const props = defineProps<{
   item: SideBarItemType;
@@ -14,15 +14,15 @@ const props = defineProps<{
 
 const routeRoot = ref("/page/");
 
-function toggleMenuItem(title: string) {
+function toggleMenuItem(title: string): void {
   isOpened.value = !isOpened.value;
   if (isOpened.value) itemClass.value += " open";
   else itemClass.value = itemClass.value.replace(/ open/g, " ");
 
-  store.setTitle(title);
+  sideBarStore.setTitle(title);
 }
 
-function createSlug(text: string) {
+function createSlug(text: string): string {
   return text.replace(/\W/g, "-").toLowerCase();
 }
 
@@ -34,7 +34,9 @@ onMounted(() => {
 <template>
   <li
     :class="
-      item.name == store.getTitle() ? 'side-bar-item active' : 'side-bar-item'
+      item.name == sideBarStore.getTitle()
+        ? 'side-bar-item active'
+        : 'side-bar-item'
     "
   >
     <div @click="toggleMenuItem(item.name)" :class="itemClass">
@@ -55,7 +57,6 @@ onMounted(() => {
 </template>
 <style scoped>
 div.parent {
-  cursor: pointer;
   font-weight: bold;
 }
 
@@ -80,6 +81,7 @@ li.side-bar-item {
   padding: 10px;
   border-radius: 10px;
   transition: all 0.2s;
+  cursor: pointer;
 }
 
 li.side-bar-item:hover {

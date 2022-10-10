@@ -1,4 +1,3 @@
-<script setup lang="ts"></script>
 <template>
   <div class="loader-overlay">
     <div class="loader large">
@@ -6,6 +5,7 @@
     </div>
   </div>
 </template>
+
 <style scoped>
 .loader-overlay {
   position: absolute;
